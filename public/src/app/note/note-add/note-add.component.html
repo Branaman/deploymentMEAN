@@ -1,0 +1,25 @@
+<h1>Create Note</h1>
+<form (submit)="onSubmit()" #formObject='ngForm'>
+  <label for="title">Title<span *ngIf='title?.valid !== true'>{{title?.errors | json}}</span></label>
+  <input
+    type="text"
+    name="title"
+    required
+    minlength="4"
+    maxlength="48"
+    [(ngModel)]="noteInstance.title"
+    #title='ngModel'
+  />
+  <label for="content">Message<span *ngIf='content?.valid !== true'>{{content?.errors | json}}</span></label>
+  <input
+    type="text"
+    name="content"
+    required
+    minlength="4"
+    maxlength="255"
+    [(ngModel)]="noteInstance.content"
+    #content='ngModel'
+  />
+  <input type="submit"
+  [disabled]="formObject.invalid">
+</form>
