@@ -28,7 +28,7 @@ export class NoteManagerService {
     return array.sort(dynamicSort("-created_at"))
   }
   retrieveNotes(){
-    this._http.get('http://localhost:8147/notes').subscribe(
+    this._http.get('/notes').subscribe(
       (response) => {
         this.notes = response.json();
         this.sortednotes = this.sorted(this.notes)
@@ -40,7 +40,7 @@ export class NoteManagerService {
     );
   }
   retrieveNote(id,callback){
-    this._http.get('http://localhost:8147/notes/'+id).subscribe(
+    this._http.get('/notes/'+id).subscribe(
       (response) => {
         this.noteInstance = response.json();
         callback(this.noteInstance);
@@ -53,7 +53,7 @@ export class NoteManagerService {
   createNote(note){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this._http.post('http://localhost:8147/notes', note, options).subscribe(
+    return this._http.post('/notes', note, options).subscribe(
       (response) => {
       },
       (err) => {
